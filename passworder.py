@@ -35,9 +35,9 @@ def passworder():
         for i in tqdm(range(0, 100), ncols=100,
                       desc="Saving"):
             sleep(0.01)
-        myclient = pymongo.MongoClient("mongodb+srv://root:tejash123@cluster0.ggn2s.mongodb.net/passwiz?retryWrites=true&w=majority")
-        mydb = myclient["passwiz"]
-        mycol = mydb["user_info"]
+        myclient = pymongo.MongoClient("___YOUR___CLUSTER___CONNECTION_URL_____")
+        mydb = myclient["___NAME_OF_CLUSTER____"]
+        mycol = mydb["__DB_NAME____"]
         mydict = {"_id":random.randint(1,100000),"name": use_for,"Email":user_mail, "password": fp}
         inserter = mycol.insert_one(mydict)
         print(colored("|--------New Password Saved---------|", "grey", "on_green"))
@@ -53,9 +53,9 @@ def load_saves():
                   desc="Loading"):
         sleep(0.01)
     print(colored("|--------Your Saved Passwords---------|", "blue", "on_grey"))
-    myclient = pymongo.MongoClient("mongodb+srv://root:tejash123@cluster0.ggn2s.mongodb.net/passwiz?retryWrites=true&w=majority")
-    mydb = myclient["passwiz"]
-    mycol = mydb["user_info"]
+    myclient = pymongo.MongoClient("")
+    mydb = myclient[""]
+    mycol = mydb[""]
     inventory_data = [data for data in mycol.find()]
     df_inventory_data = pd.DataFrame(inventory_data)
     print (colored(df_inventory_data,"blue",attrs=['bold','underline']))
@@ -77,9 +77,9 @@ def load_saves():
         print("||-------------------------------------||")
         print("||-------New passWord", "\x1b[0m :", "\x1b[6;30;42m", fp, "\033[1;35;m  -----||\x1b[0m")
         print("||-------------------------------------||")
-        myclient = pymongo.MongoClient("mongodb+srv://root:tejash123@cluster0.ggn2s.mongodb.net/passwiz?retryWrites=true&w=majority")
-        mydb = myclient["passwiz"]
-        mycol = mydb["user_info"]
+        myclient = pymongo.MongoClient("")
+        mydb = myclient[""]
+        mycol = mydb[""]
         myquery = {"_id": update_id}
         newvalues = {"$set": {"password": fp}}
         mycol.update_one(myquery, newvalues)
@@ -88,9 +88,9 @@ def load_saves():
     elif load_saves_curr_state == 2:
         print(colored("#============Delete password:============#", "blue", "on_grey"))
         del_row = int(input("Enter the Id number of Password to Delete:"))
-        myclient = pymongo.MongoClient("mongodb+srv://root:tejash123@cluster0.ggn2s.mongodb.net/passwiz?retryWrites=true&w=majority")
-        mydb = myclient["passwiz"]
-        mycol = mydb["user_info"]
+        myclient = pymongo.MongoClient("")
+        mydb = myclient[""]
+        mycol = mydb[""]
         myquery = {"_id":del_row }
         print(colored("|--------Password Deleted---------|", "grey", "on_red"))
         mycol.delete_one(myquery)
